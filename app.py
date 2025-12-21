@@ -3,6 +3,8 @@ import os
 import psycopg2
 
 app = Flask(__name__)
+
+
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://sevval:C2TbUsmgDpeSO5zG34kl2cLqd94IoUaC@dpg-d426lkpr0fns739009mg-a.oregon-postgres.render.com/hello_cloud2_db_n274")
 
 HTML = """
@@ -43,12 +45,13 @@ HTML = """
 def connect_db():
     if not DATABASE_URL:
         raise RuntimeError("DATABASE_URL tanımlı değil.")
-    return psycopg2.connect(DATABASE_URL)
+
+    return psycopg2.connect(DATABASE_URL, sslmode='require')
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     try:
-        # Her istekte tabloyu garanti et
+        
         with connect_db() as conn:
             with conn.cursor() as cur:
                 cur.execute("""
@@ -61,6 +64,7 @@ def index():
                     isim = (request.form.get("isim") or "").strip()
                     if isim:
                         cur.execute("INSERT INTO ziyaretciler (isim) VALUES (%s)", (isim,))
+                
                 cur.execute("SELECT isim FROM ziyaretciler ORDER BY id DESC LIMIT 10")
                 isimler = [row[0] for row in cur.fetchall()]
         return render_template_string(HTML, isimler=isimler)
