@@ -26,6 +26,7 @@ HTML = """
 <body>
   <h1>Buluttan Selam</h1>
   <p>adını yaz , selamını bırak</p>
+  <h3>Hazırlayan: Şevval Azra Koçak</h3>
 
   <form method="POST">
     <input type="text" name="isim" placeholder="Adını yaz" required>
