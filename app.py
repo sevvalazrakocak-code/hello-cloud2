@@ -14,19 +14,53 @@ HTML = """
   <meta charset="utf-8">
   <title>Buluttan Selam</title>
   <style>
-    body {font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #eef2f3;}
-    h1 {color: #333;}
-    form {margin: 20px auto;}
-    input {margin: 10px; font-size: 16px; padding: 8px;}
-    button {padding: 10px 15px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;}
-    ul {list-style: none; padding: 0;}
-    li {background: white; margin: 5px auto; width: 220px; padding: 8px; border-radius: 5px;}
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background: #eef2f3;
+    }
+    h1 { color: #333; }
+    form { margin: 20px auto; }
+    input {
+      margin: 10px;
+      font-size: 16px;
+      padding: 8px;
+    }
+    button {
+      padding: 10px 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin: 5px auto;
+      width: 220px;
+      padding: 8px;
+      border-radius: 5px;
+    }
+    hr {
+      margin-top: 40px;
+      width: 60%;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
+
   <h1>Buluttan Selam</h1>
-  <p>adını yaz , selamını bırak</p>
-  <h3>Hazırlayan: Şevval Azra Koçak</h3>
+  <p>adını yaz, selamını bırak</p>
 
   <form method="POST">
     <input type="text" name="isim" placeholder="Adını yaz" required>
@@ -39,9 +73,16 @@ HTML = """
       <li>{{ ad }}</li>
     {% endfor %}
   </ul>
+
+  <hr>
+  <p class="footer">
+    Hazırlayan: Şevval Azra Koçak
+  </p>
+
 </body>
 </html>
 """
+
 
 def connect_db():
     if not DATABASE_URL:
